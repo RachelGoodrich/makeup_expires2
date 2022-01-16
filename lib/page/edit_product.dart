@@ -19,6 +19,7 @@ class _AddEditProductPageState extends State<AddEditProductPage> {
   late int number;
   late String title;
   late String description;
+  late DateTime createdTime;
 
   @override
   void initState() {
@@ -27,6 +28,7 @@ class _AddEditProductPageState extends State<AddEditProductPage> {
     number = widget.product?.number ?? 0;
     title = widget.product?.title ?? '';
     description = widget.product?.description ?? '';
+    createdTime = widget.product?.createdTime ?? DateTime.now();
   }
 
   @override
@@ -34,7 +36,7 @@ class _AddEditProductPageState extends State<AddEditProductPage> {
     appBar: AppBar(
       actions: [buildButton()],
     ),
-    body: Form( 
+    body: Form(
       key: _formKey,
       child: ProductFormWidget(
         number: number,
@@ -42,8 +44,11 @@ class _AddEditProductPageState extends State<AddEditProductPage> {
         description: description,
         onChangedNumber: (number) => setState(() => this.number = number),
         onChangedTitle: (title) => setState(() => this.title = title),
+        //onChangedCreatedTime: (createdTime) => setState(() => this.createdTime = createdTime),
         onChangedDescription: (description) =>
             setState(() => this.description = description),
+
+          // onChangedCreatedDate: (number) => setState(() => this.number = number),
       ),
     ),
   );
@@ -99,5 +104,17 @@ class _AddEditProductPageState extends State<AddEditProductPage> {
     );
 
     await ProductsDatabase.instance.create(product);
+  }
+
+  DateTime calculateCreatedDate(int num){
+    //Given the number of days ago the item was opened, return the date
+    DateTime from = DateTime.now();
+    DateTime expires;
+    int numOfDays = num;
+    if (numOfDays > 0){
+      expires = from.subtract(Duration(days: numOfDays));
+      return expires;
+    }
+    return DateTime.now();
   }
 }

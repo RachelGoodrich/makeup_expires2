@@ -1,3 +1,12 @@
+//Makeup Products
+/*
+* 6 Months: eyeliner, mascara, lip gloss, liquid lipsticks
+* 1 Year: foundation, primer, lipstick
+* 2 Years: Powder products such as; blush, eyeshadow, setting spray, pressed powder, setting powder
+*
+* */
+
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:makeup_expires2/model/product.dart';
@@ -137,10 +146,8 @@ class ProductCardWidget extends StatelessWidget {
     int days;
     if (title == "Mascara" || title == "mascara" || title == "eyeliner" || title == "Eyeliner") {
       expires = created.add(const Duration(days: 180));
-    } else if (title == "Eyeshadow" || title == "eyeshadow") {
-      expires = created.add(const Duration(days: 730));
-    } else if (title == "Pressed Powder" || title == "pressed powder" ||
-        title == "Pressed powder") {
+    } else if (title == "Eyeshadow" || title == "eyeshadow" || title == "Pressed Powder" || title == "pressed powder" ||
+        title == "Pressed powder" || title == "blush" || title == "Blush") {
       expires = created.add(const Duration(days: 730));
     } else if (title == "Foundation" || title == "foundation") {
       expires = created.add(const Duration(days: 365));
