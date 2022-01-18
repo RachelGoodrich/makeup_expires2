@@ -44,7 +44,7 @@ class _AddEditProductPageState extends State<AddEditProductPage> {
         description: description,
         onChangedNumber: (number) => setState(() => this.number = number),
         onChangedTitle: (title) => setState(() => this.title = title),
-        //onChangedCreatedTime: (createdTime) => setState(() => this.createdTime = createdTime),
+        onChangedCreatedTime: (createdTime) => setState(() => this.createdTime = createdTime),
         onChangedDescription: (description) =>
             setState(() => this.description = description),
 
@@ -90,6 +90,7 @@ class _AddEditProductPageState extends State<AddEditProductPage> {
       number: number,
       title: title,
       description: description,
+      createdTime: createdTime,
     );
 
     await ProductsDatabase.instance.update(product);
@@ -100,21 +101,24 @@ class _AddEditProductPageState extends State<AddEditProductPage> {
       title: title,
       number: number,
       description: description,
-      createdTime: DateTime.now(),
+      createdTime: createdTime,
     );
 
     await ProductsDatabase.instance.create(product);
   }
 
-  DateTime calculateCreatedDate(int num){
-    //Given the number of days ago the item was opened, return the date
-    DateTime from = DateTime.now();
-    DateTime expires;
-    int numOfDays = num;
-    if (numOfDays > 0){
-      expires = from.subtract(Duration(days: numOfDays));
-      return expires;
-    }
-    return DateTime.now();
-  }
+
+  // _selectDate(BuildContext context) async {
+  //   final DateTime selected = await showDatePicker(
+  //     context: context,
+  //     initialDate: selectedDate,
+  //     firstDate: DateTime(2010),
+  //     lastDate: DateTime(2025),
+  //   );
+  //   if (selected != null && selected != selectedDate)
+  //     setState(() {
+  //       selectedDate = selected;
+  //     });
+  // }
 }
+

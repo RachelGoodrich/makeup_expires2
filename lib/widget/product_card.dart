@@ -1,8 +1,8 @@
 //Makeup Products
 /*
 * 6 Months: eyeliner, mascara, lip gloss, liquid lipsticks
-* 1 Year: foundation, primer, lipstick
-* 2 Years: Powder products such as; blush, eyeshadow, setting spray, pressed powder, setting powder
+* 1 Year: foundation, primer, lipstick, cream bronzer, cream contour
+* 2 Years: Powder products such as; blush, eyeshadow, setting spray, pressed powder, setting powder, bronzer, contour
 *
 * */
 
