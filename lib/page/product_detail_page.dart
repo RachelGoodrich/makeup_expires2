@@ -57,13 +57,11 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
           ),
           SizedBox(height: 8),
           Text(
-            //DateFormat.yMMMd().format(product.createdTime)
             getExpires(product.title, product.createdTime),
             style: TextStyle(color: Colors.black),
           ),
           Text(
             DateFormat.yMMMd().format(product.createdTime),
-            // getExpires(product.title, product.createdTime),
             style: TextStyle(color: Colors.black),
           ),
           SizedBox(height: 8),
@@ -77,7 +75,6 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
             style: TextStyle(
               color: Colors.black38,
               fontSize: 18,
-              // fontWeight: FontWeight.bold,
             ),
           )
 
@@ -128,6 +125,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       return "Liquid lipstick should be thrown out every 6 months...";
     }else if(title == "Concealer" || title == "concealer"){
       return "Concealer should be thrown out every 6 months...";
+    }
+    else if(title == "Bronzer" || title == "bronzer"){
+      return "Bronzer should be thrown out every two years...";
     }
     return "If it starts smelling different, throw it out!";
   }

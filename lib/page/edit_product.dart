@@ -16,7 +16,7 @@ class AddEditProductPage extends StatefulWidget {
 
 class _AddEditProductPageState extends State<AddEditProductPage> {
   final _formKey = GlobalKey<FormState>();
-  late int number;
+  // late int number;
   late String title;
   late String description;
   late DateTime createdTime;
@@ -25,7 +25,6 @@ class _AddEditProductPageState extends State<AddEditProductPage> {
   void initState() {
     super.initState();
 
-    number = widget.product?.number ?? 0;
     title = widget.product?.title ?? '';
     description = widget.product?.description ?? '';
     createdTime = widget.product?.createdTime ?? DateTime.now();
@@ -39,16 +38,12 @@ class _AddEditProductPageState extends State<AddEditProductPage> {
     body: Form(
       key: _formKey,
       child: ProductFormWidget(
-        number: number,
         title: title,
         description: description,
-        onChangedNumber: (number) => setState(() => this.number = number),
         onChangedTitle: (title) => setState(() => this.title = title),
         onChangedCreatedTime: (createdTime) => setState(() => this.createdTime = createdTime),
         onChangedDescription: (description) =>
             setState(() => this.description = description),
-
-          // onChangedCreatedDate: (number) => setState(() => this.number = number),
       ),
     ),
   );
@@ -87,7 +82,7 @@ class _AddEditProductPageState extends State<AddEditProductPage> {
 
   Future updateProduct() async {
     final product = widget.product!.copy(
-      number: number,
+      // number: number,
       title: title,
       description: description,
       createdTime: createdTime,
@@ -99,7 +94,7 @@ class _AddEditProductPageState extends State<AddEditProductPage> {
   Future addProduct() async {
     final product = Product(
       title: title,
-      number: number,
+      // number: number,
       description: description,
       createdTime: createdTime,
     );
@@ -107,18 +102,5 @@ class _AddEditProductPageState extends State<AddEditProductPage> {
     await ProductsDatabase.instance.create(product);
   }
 
-
-  // _selectDate(BuildContext context) async {
-  //   final DateTime selected = await showDatePicker(
-  //     context: context,
-  //     initialDate: selectedDate,
-  //     firstDate: DateTime(2010),
-  //     lastDate: DateTime(2025),
-  //   );
-  //   if (selected != null && selected != selectedDate)
-  //     setState(() {
-  //       selectedDate = selected;
-  //     });
-  // }
 }
 

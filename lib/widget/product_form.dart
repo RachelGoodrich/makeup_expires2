@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:date_time_picker/date_time_picker.dart';
 
 class ProductFormWidget extends StatelessWidget {
-  final int? number;
   final String? title;
   final String? description;
-  final ValueChanged<int> onChangedNumber;
+  final DateTime? createdTime;
   final ValueChanged<String> onChangedTitle;
   final ValueChanged<String> onChangedDescription;
+  final ValueChanged<DateTime> onChangedCreatedTime;
+
+
 
   const ProductFormWidget({
     Key? key,
-    this.number = 0,
     this.title = '',
     this.description = '',
-    required this.onChangedNumber,
+    // DateTime? createdTime,
+    this.createdTime,
+    // required this.onChangedNumber,
     required this.onChangedTitle,
     required this.onChangedDescription,
+    required this.onChangedCreatedTime,
   }) : super(key: key);
 
   @override
@@ -25,19 +31,19 @@ class ProductFormWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-        //   // Row(
-        //   //   // children: [
-        //   //   //   // Expanded(
-        //   //   //   //   child: Slider(
-        //   //   //   //     value: (number ?? 0).toDouble(),
-        //   //   //   //     min: 0,
-        //   //   //   //     max: 5,
-        //   //   //   //     divisions: 5,
-        //   //   //   //     onChanged: (number) => onChangedNumber(number.toInt()),
-        //   //   //   //   ),
-        //   //   //   )
-        //   //   ],
-        //   ),
+          IconButton(
+            icon: Icon(Icons.calendar_today),
+            tooltip: 'Tap to open date picker',
+            onPressed: () {
+              final createdTime = showDatePicker(
+                context: context,
+                initialDate: DateTime.now(),
+                firstDate: DateTime(2015, 8),
+                lastDate: DateTime(2101),
+              );
+              onChanged: (createdTime) => onChangedCreatedTime(createdTime);
+            },
+          ),
           buildTitle(),
           SizedBox(height: 8),
           buildDescription(),
@@ -79,4 +85,5 @@ class ProductFormWidget extends StatelessWidget {
         : null,
     onChanged: onChangedDescription,
   );
+
 }

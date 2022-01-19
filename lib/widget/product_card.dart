@@ -33,7 +33,6 @@ class ProductCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final color = _lightColors[getColor(product.createdTime, product.title)];
-    final time = DateFormat.yMMMd().format(product.createdTime);
     final minHeight = getMinHeight(product.title);
 
     return Card(
@@ -45,14 +44,6 @@ class ProductCardWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Icon(
-            //   Icons.favorite,
-            // // AssetImage('assets/icons/mascara.svg'),
-            //   // onPressed: () => exit(0),
-            //   // color: Colors.pink,
-            //   // size: 24.0,
-            //   // semanticLabel: 'Text to announce in accessibility modes',
-            // ),
             Text(
               getExpires(product.title, product.createdTime),
               style: TextStyle(color: Colors.black),
@@ -71,30 +62,20 @@ class ProductCardWidget extends StatelessWidget {
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 15,
-                // fontWeight: FontWeight.bold,
               ),
             ),
-            // Text(
-            //   getExpires(product.title, product.createdTime),
-            //   style: TextStyle(
-            //     color: Colors.black,
-            //     fontSize: 15,
-            //     // fontWeight: FontWeight.bold,
-            //   ),
-            // ),
           ],
         ),
       ),
     );
   }
 
-  /// To return different height for different widgets
+
   double getMinHeight(String title) {
-    // if(title == "Mascara"){
-    //   return 200;
-    // }
+
     return 100;
   }
+
   String getInfo(String title) {
     if (title == "Mascara" || title == "mascara") {
       return "Mascara should be thrown out every 6 months...";
@@ -117,6 +98,8 @@ class ProductCardWidget extends StatelessWidget {
       return "Liquid lipstick should be thrown out every 6 months...";
     }else if(title == "Concealer" || title == "concealer"){
       return "Concealer should be thrown out every 6 months...";
+    }else if(title == "Bronzer" || title == "bronzer"){
+      return "Bronzer should be thrown out every two years...";
     }
     return "If it starts smelling different, throw it out!";
   }
@@ -131,7 +114,7 @@ class ProductCardWidget extends StatelessWidget {
       expires = from.add(const Duration(days: 365));
       //Two years
     } else if (title == "Eyeshadow" || title == "eyeshadow" || title == "Pressed Powder" || title == "pressed powder" ||
-        title == "Pressed powder" || title == "Blush" || title == "blush") {
+        title == "Pressed powder" || title == "Blush" || title == "blush" || title == "Bronzer" || title == "bronzer") {
       expires = from.add(const Duration(days: 730));
       //No info
     }else{
@@ -141,13 +124,12 @@ class ProductCardWidget extends StatelessWidget {
     return "Expires $myString";
   }
   int getColor(DateTime created, String title){ //colors are decided by how close to expiration date
-    DateTime today = DateTime.now();
     DateTime expires;
     int days;
     if (title == "Mascara" || title == "mascara" || title == "eyeliner" || title == "Eyeliner") {
       expires = created.add(const Duration(days: 180));
     } else if (title == "Eyeshadow" || title == "eyeshadow" || title == "Pressed Powder" || title == "pressed powder" ||
-        title == "Pressed powder" || title == "blush" || title == "Blush") {
+        title == "Pressed powder" || title == "blush" || title == "Blush" || title == "Bronzer" || title == "bronzer") {
       expires = created.add(const Duration(days: 730));
     } else if (title == "Foundation" || title == "foundation") {
       expires = created.add(const Duration(days: 365));

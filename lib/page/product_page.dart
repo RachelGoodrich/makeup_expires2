@@ -44,7 +44,6 @@ class _ProductsPageState extends State<ProductsPage> {
         'Makeup Expires!',
         style: TextStyle(fontSize: 24),
       ),
-      // actions: [Icon(Icons.search), SizedBox(width: 12)],
     ),
     body: Center(
       child: isLoading
@@ -52,7 +51,7 @@ class _ProductsPageState extends State<ProductsPage> {
           : products.isEmpty
           ? Text(
         'No products have been added.',
-        style: TextStyle(color: Colors.white, fontSize: 24),
+        style: TextStyle(color: Colors.grey, fontSize: 24),
       )
           : buildProducts(),
     ),
